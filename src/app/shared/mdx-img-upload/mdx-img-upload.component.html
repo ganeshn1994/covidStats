@@ -1,0 +1,10 @@
+<div class="form-group p-2 m-0" style="position: relative;">
+  <label class="p-0 m-0 w-5">{{title}}<label class="p-0 m-0" appRequired={{required}}></label></label>
+  <file-upload [control]="fileUploadControl"></file-upload>
+
+  <div class=" file-list" *ngIf="fileUploadControl.value.length > 0">
+    <div class="file-item" *ngFor="let file of fileUploadControl.value" (click)="fileUploadControl.removeFile(file)">
+    </div>
+  </div>
+  <app-control-message [title]="title" [control]="control" [isFormSubmit]="isFormSubmit"></app-control-message>
+</div>

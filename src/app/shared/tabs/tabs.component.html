@@ -1,0 +1,11 @@
+<nav *ngIf="tabsData.length > 0">
+  <div class="nav-tabs mytabs">
+    <div *ngFor="let tab of tabsData" (click)="selectComponent(tab)">
+      <a *ngIf="tab.componentLevel != 'child'" class="nav-item nav-link"
+        [ngClass]="selectedComponent.name === tab.name ? 'active' : ''" [routerLink]=""
+        [fragment]="tab.name">{{tab.name}}</a>
+      <a *ngIf="tab.componentLevel === 'child'" class="nav-item nav-link"
+        [ngClass]="selectedComponent.name === tab.name ? 'active' : ''">{{tab.name}}</a>
+    </div>
+  </div>
+</nav>

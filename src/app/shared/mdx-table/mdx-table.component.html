@@ -1,0 +1,86 @@
+<div class="col-12 p-2 m-0" *ngIf="records.length > 0">
+  <div class="col-12 p-0 m-0 text-right" *ngIf="count">
+    <label class="p-0 m-0" [ngClass]="export ? 'total' : ''"><strong class="count">Total Records:</strong>
+      {{count}}</label>
+    <img *ngIf="export" src="../../../assets/images/exportimage.png" class="export" (click)="exportFunc()">
+  </div>
+  <div class="table-responsive">
+    <table class="table p-0 m-0" [ngClass]="tableSettings.class"
+      [ngStyle]="{'font-size': tableSettings.fontSize + 'px'}">
+      <thead style="background: #2d85c9;color: #fff;">
+        <tr [ngClass]="tableSettings.align">
+          <th class="v-middle" *ngIf="checkboxEnable"><input type="checkbox" [(ngModel)]="checkAll"
+              (change)="selectAll(records, checkAll)" [disabled]="isDisableCheckAll">
+          </th>
+          <th class="mdx-th" *ngFor="let map of columnMaps">{{ map.header }}</th>
+          <th class="text-center" *ngIf="actions"
+            [ngStyle]="{'min-width': actions.length === 3 ? '140px' : actions.length === 2 ? '103px' : ''}">Actions</th>
+        </tr>
+      </thead>
+      <tbody [ngClass]="tableSettings.align">
+        <tr *ngFor="let record of records;let i = index">
+          <td class="v-middle" *ngIf="checkboxEnable">
+            <input type="checkbox" [(ngModel)]="record.isSelected" (change)="selectRecord()"
+              [disabled]="isDisabled(record)">
+          </td>
+          <td *ngFor="let map of columnMaps" sortable="name" [appStyleCell]="record[map.access(record)]">
+            <span *ngIf="map && !map.alternativeKeys">{{ record[map.access(record)] | formatCell:map.format }}</span>
+            <ng-container *ngIf="map && map.specialKeys">
+              <div class="row p-0 m-0">
+                <ng-container *ngFor="let special of map.specialKeys">
+                  <div style="display: inherit;font-size: 0.7rem;"
+                    *ngIf="record[special.key] && record[special.key] !=  'verify'" class="badge badge-pill mb-2 mr-2"
+                    [ngClass]="special.class">
+                    {{record[special.key]}}
+                  </div>
+                  <div *ngIf="special.key== 'verify'" class="verify-badge">
+                    <img src="./assets/images/verified.png" class="verify">
+                  </div>
+                </ng-container>
+              </div>
+            </ng-container>
+
+            <a *ngIf="map && map.alternativeKeys && map.alternativeKeys.length > 0 && map.alternativeKeys[0] === 'image' && record[map.access(record)]"
+              href={{record[map.access(record)]}} target="_blank">
+              <img [src]="record[map.access(record)]" alt="img" height="100px">
+            </a>
+
+            <a
+              *ngIf="map && map.alternativeKeys && map.alternativeKeys.length > 0 && map.alternativeKeys[0] === 'image' && !record[map.access(record)]">
+              <img src="../../../assets/images/noimageProduct.png" alt="img" height="100px">
+            </a>
+
+            <ul *ngIf="map && map.alternativeKeys && map.alternativeKeys.length > 0 && map.type === 'array'">
+              <li *ngFor="let item of record[map.access(record)]">
+                {{item}}
+              </li>
+            </ul>
+          </td>
+
+          <td class="text-center" *ngIf="actions">
+            <ng-container *ngFor="let action of actions">
+              <button class="m-1 btn btn-sm" [ngClass]="action.class" *ngIf="isDisplayButton(record, action)" (click)="action.action === 'edit' ? editEmitter(i,record) : action.action === 'delete' ?
+                deleteEmitter(i,record) : action.action === 'view' ? viewEmitter(i,record) : action.action === 'special' ?
+                specialEmitter(record) : viewEmitter(i,record)">
+                <i *ngIf="!action.name" class="fa" [ngClass]="action.action === 'edit' ? 'fa-pencil' : action.action === 'delete' ? 'fa-trash' :
+                  action.action === 'view' ? 'fa-eye': action.action === 'special' ? 'fa-eye' : ''"
+                  aria-hidden="true"></i>
+                <span *ngIf="action.name">{{action.name}}</span>
+              </button>
+              <!-- <input type="checkbox" *ngIf="action.type === 'checkbox'" (click)="checkEmitter(record)"> -->
+
+
+              <p class="mb-2 cursor-pointer" *ngIf="isDisplayText(record, action)" [ngClass]="action.class" (click)="action.action === 'edit' ? editEmitter(i,record) : action.action === 'delete' ?
+                deleteEmitter(i,record) : action.action === 'view' ? viewEmitter(i,record) : viewEmitter(i,record)">
+                {{action.name}}</p>
+            </ng-container>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="col-12 text-center" *ngIf="records.length === 0">
+  <label class="text-info">No data Found</label>
+</div>

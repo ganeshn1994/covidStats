@@ -1,0 +1,7 @@
+<div class="form-group p-2 m-0">
+  <label class="p-0 m-0 w-5">{{title}}<label class="p-0 m-0" appRequired={{required}}></label></label>
+  <angular-editor [config]="editorConfig" [(ngModel)]="inputValue" placeholder="Enter {{title ? title : 'here'}}"
+    (ngModelChange)="valueChange($event)">
+  </angular-editor>
+  <app-control-message [title]="title" [control]="control" [isFormSubmit]="isFormSubmit"></app-control-message>
+</div>

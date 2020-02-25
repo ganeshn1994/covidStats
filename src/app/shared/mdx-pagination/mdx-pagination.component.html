@@ -1,0 +1,29 @@
+<ul class="col-12 pagination mt-sm-4 mt-md-4 mt-lg-4 mt-xl-4 mb-sm-4 mb-md-4 mb-lg-4 mb-xl-4 p-2 m-0"
+  *ngIf="pager.totalPages > 1 && pager.pages && pager.pages.length">
+  <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+    <a class="page-link" (click)="changePager(1)">&#xab;</a>
+  </li>
+
+  <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+    <a class="page-link" (click)="changePager(pager.currentPage - 1)">&#x2039;</a>
+  </li>
+
+  <li class="page-item">
+    <a class="page-link page-textfileld">
+      <input type="number" class="page-input" [(ngModel)]="page.pageNumber" min="1" max="{{pager.totalPages}}"
+        (keyup.enter)="changePager(page.pageNumber)"> / {{pager.totalPages}}
+    </a>
+  </li>
+
+  <!-- <li class="page-item" [ngClass]="{disabled:pager.currentPage}">
+      <a class="page-link" [ngClass]="{pageitemlink:pager.currentPage}">{{pager.currentPage}}</a>
+    </li> -->
+
+  <li class="page-item" [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+    <a class="page-link" (click)="changePager(pager.currentPage + 1)">&#x203A;</a>
+  </li>
+
+  <li class="page-item" [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+    <a class="page-link" (click)="changePager(pager.totalPages)">&#xbb;</a>
+  </li>
+</ul>

@@ -1,0 +1,176 @@
+<div class="row m-0 mt-4">
+  <div class="col-12 mt-5 mb-5">
+    <div class="mx-auto col-md-11 col-lg-8 col-xl-8">
+      <div class="row">
+        <div class="col-md-6 col-sm-12 register-carosal pt-5 pb-2 d-none d-sm-none d-md-block d-lg-block">
+          <div id="demo" class="carousel slide" data-ride="carousel">
+            <ul class="carousel-indicators">
+              <li data-target="#demo" data-slide-to="0" class="active cursor-pointer"></li>
+              <li data-target="#demo" data-slide-to="1" class="cursor-pointer"></li>
+            </ul>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <div class="text-center">
+                  <img src="../../../assets/images/loginImage1.png" alt="img1">
+                </div>
+                <div class="carousel-text mb-5 ml-5">
+                  <h3>Order Management</h3>
+                  <ul class="carousel-list mb-5">
+                    <li>Search Products and Suppliers</li>
+                    <li>Buy and Sell</li>
+                    <li>Track your Order</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="text-center">
+                  <img src="../../../assets/images/loginImage2.png" alt="img2">
+                </div>
+                <div class="carousel-text mb-5 ml-5">
+                  <h3>Promotions</h3>
+                  <ul class="carousel-list mb-5">
+                    <li>Deals</li>
+                    <li>CashBack</li>
+                    <li>Promo Code</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-sm-12 register-form pt-3">
+          <div class="col-md-11 col-sm-12 mx-auto p-0 text-center">
+            <label class="register-text">{{registerPage.title}}</label>
+            <div class="col-12 p-0 m-0">
+              <div class="d-flex" style="justify-content: center;">
+                <div class="a m-1"></div>
+                <div class="b m-1"></div>
+              </div>
+            </div>
+
+            <div class="col-12 p-0 m-0" *ngIf="!registerPage.OTPBlock && !registerPage.editMobileNumberBlock">
+              <form [formGroup]="registerForm" (ngSubmit)="register()">
+                <div class="form-group text-left">
+                  <div class="form-group text-left">
+                    <label class="register-label p-0 m-0 font-weight-normal">Name<label appRequired="required"
+                        class="p-0 m-0"></label></label>
+                    <input type="text" class="form-control" id="name" name="name" formControlName="name"
+                      [ngClass]="{ 'is-invalid': registerPage.submitted && name.errors }" />
+                    <div *ngIf="registerPage.submitted && name.errors" class="invalid-feedback">
+                      <div *ngIf="name.errors.required">
+                        Name is required
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group text-left">
+                    <label class="register-label p-0 m-0 font-weight-normal">Mobile Number
+                      <label appRequired="required" class="p-0 m-0">
+                      </label>
+                    </label>
+
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text" id="btnGroupAddon">+91</div>
+                      </div>
+                      <input type="text" appInputRestriction="integersAndRestrictLength" class="form-control"
+                        id="mobileNumber" name="mobileNumber" formControlName="mobileNumber"
+                        [ngClass]="{ 'is-invalid': registerPage.submitted && mobileNumber.errors }" />
+                      <div *ngIf="registerPage.submitted && mobileNumber.errors" class="invalid-feedback">
+                        <div *ngIf="mobileNumber.errors.required">
+                          Mobile Number required.
+                        </div>
+                        <div *ngIf="mobileNumber.errors.pattern">
+                          Mobile Number is Invalid.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <label for="email" class="register-label p-0 m-0 font-weight-normal">Email</label>
+                  <input type="email" class="form-control" id="email" name="email" formControlName="email"
+                    [ngClass]="{ 'is-invalid': registerPage.submitted && r.email.errors }" />
+                  <div *ngIf="registerPage.submitted && r.email.errors" class="invalid-feedback">
+                    <div *ngIf="r.email.errors.email">Email must be a valid email address</div>
+                  </div>
+                </div>
+
+                <div class="col-12 p-0 m-0">
+                  <div class="form-check-inline">
+                    <small class="form-check-label">
+                      <input type="checkbox" name="agent" class="form-check-input" formControlName="terms">
+                      I Agree with
+                      <span class="medi_privacy">
+                        <a [routerLink]="['/privacyPolicy']" mdx-tag="mdx_a_privacyPolicy" class="f-color">Privacy
+                          Policy</a>
+                        and
+                        <a [routerLink]="['/termsOfService']" mdx-tag="mdx_a_termsOfService" class="f-color">Terms Of
+                          Service</a>
+                      </span>
+                    </small>
+                  </div>
+                </div>
+
+                <button type="submit" class="form-group btn btn-block register-submit"
+                  [disabled]="!registerForm.value.terms">Create Your Account</button>
+              </form>
+            </div>
+
+            <div class="col-12 p-0 m-0" *ngIf="registerPage.editMobileNumberBlock">
+              <form [formGroup]="editMobileForm" (ngSubmit)="editPhoneNumber()">
+                <div class="form-group text-left">
+                  <label for="email" class="register-label">Mobile Number{{registerPage.mobileNumber}}</label>
+                  <input type="text" class="form-control" id="mobileNumber" name="mobileNumber"
+                    formControlName="mobileNumber" appInputRestriction="integersAndRestrictLength"
+                    [ngClass]="{ 'is-invalid': registerPage.submitted && f1.mobileNumber.errors }" />
+                  <div *ngIf="registerPage.submitted && f1.mobileNumber.errors" class="invalid-feedback">
+                    <div *ngIf="f1.mobileNumber.errors.required">Mobile Number is required</div>
+                    <div *ngIf="f1.mobileNumber.errors.pattern">
+                      Mobile Number is Invalid.
+                    </div>
+                  </div>
+                </div>
+                <button type="submit" class="form-group btn btn-block register-submit"
+                  [disabled]="registerPage.loading">Submit</button>
+              </form>
+            </div>
+
+            <div class="col-12 text-center p-0 m-0" *ngIf="registerPage.OTPBlock">
+              <div class="col-12 edit-mobilenumber p-2">
+                <i class="fa fa-edit cursor-pointer edit-icon" title="Edit mobileNumber"
+                  (click)="editMobilenumber()"></i>+91 - <span>{{registerPage.mobileNumber}}</span>
+              </div>
+              <div class="col-12 otp-digit p-2">Please enter the 4 digit OTP sent to you</div>
+              <div class="col-12 otp-digit p-2">Valid only for 30 minutes</div>
+              <div class="col-5 mx-auto otp-digit p-0 m-0">
+                <input appInputRestriction='integersOnly' placeholder="Enter OTP" pattern="\d*" maxlength="4"
+                  type="text" class="form-control text-center otp" name="OTP" [(ngModel)]="registerPage.otp" />
+              </div>
+              <div class="col-12 p-0 m-0 text-center">
+                <label *ngIf="registerPage.isCalledOTP" class="resendOTP-timer">Resend OTP in
+                  <strong>{{registerPage.seconds}}</strong> seconds</label>
+                <label [hidden]="registerPage.isCalledOTP" class="resend-otp cursor-pointer" (click)="getOTP()">Resend
+                  OTP</label>
+              </div>
+              <button type="submit" class="form-group btn btn-block register-submit" [hidden]="registerPage.verify"
+                [disabled]="registerPage.loading || registerPage.otp.length < 4"
+                (click)="validateUserOTP()">Submit</button>
+            </div>
+
+            <div class="col-12">
+              <small class="col-12 p-0 m-0">
+                Already have an account ?
+                <a [routerLink]="['/login']" mdx-tag="mdx_a_termsOfService" class="f-color">Login here</a>
+              </small>
+            </div>
+
+            <div class="col-12 text-center support-contact pb-2">
+              For any assistance please contact support 7337898880
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

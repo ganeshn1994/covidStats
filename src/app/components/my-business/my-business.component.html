@@ -1,0 +1,17 @@
+<div class="row p-2 m-0">
+  <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8 mx-auto pt-2 pb-2 pl-0 pr-0 m-0"
+    *ngFor="let business of bussinessData">
+    <div class="col-12 custom-group p-0 m-0">
+      <label class="col-12 pl-2 pr-2 pt-0 pb-0 m-0 font-weight-bold ">
+        <span class="text-success">{{business.placeType}}</span>
+      </label>
+      <app-mdx-table [records]="business.data" [dataSettings]="dataSettings" [tableSettings]="tableSettings"
+        [actions]="actions" (viewData)="redirectToBusiness($event)">
+      </app-mdx-table>
+    </div>
+  </div>
+
+  <div class="col-12 text-center mt-5" *ngIf="bussinessData.length <= 0">
+    <label class="col-12">Data Not Found!!</label>
+  </div>
+</div>

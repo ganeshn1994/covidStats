@@ -1,0 +1,37 @@
+.privacy-page {
+  margin-top: 10px;
+}
+
+/* privacy policy and terms of service */
+.panel-body p {
+  font-size: 13px;
+  color: #656565;
+}
+
+.collections li {
+  color: #656565;
+  font-size: 13px;
+  font-family: 'Open Sans', Arial, sans-serif;
+}
+
+.panel-default {
+  border: 1px solid #c0c0c0;
+  border-radius: 4px;
+  color: #333333;
+  background-color: #f9f9f9;
+  border-color: #e0e0e0;
+}
+
+.panel-heading {
+  background-color: #f3f3f2;
+  border-color: #857c78;
+  border-bottom: 1px solid #e0e0e0;
+  margin: -15px -16px 0px -16px;
+  padding: 8px 0 0px 15px;
+}
+
+@media screen and (max-width: 992px) {
+  ol {
+    padding-inline-start: 20px;
+  }
+}

@@ -1,0 +1,9 @@
+<div class="form-group p-2 m-0">
+  <label class="p-0 m-0 w-5">{{title}}<label class="p-0 m-0" appRequired={{required}}></label></label>
+  <select class="form-control" [(ngModel)]="inputValue" (ngModelChange)="onSelect($event)"
+    [attr.disabled]="disabled === 'disabled' ? 'disabled' : null">
+    <option [ngValue]="null"> Please Select {{ title }} </option>
+    <option *ngFor="let item of options" [ngValue]="item.value">{{ item.name }}</option>
+  </select>
+  <app-control-message [title]="title" [control]="control" [isFormSubmit]="isFormSubmit"></app-control-message>
+</div>

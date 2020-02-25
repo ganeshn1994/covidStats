@@ -1,0 +1,136 @@
+<div class="row m-0 mt-4">
+  <div class="col-12 mt-5 mb-5">
+    <div class="mx-auto col-md-11 col-lg-8 col-xl-8">
+      <div class="row">
+        <div class="col-md-6 col-sm-12 login-carosal pt-5 pb-2 d-none d-sm-none d-md-block d-lg-block">
+          <div id="demo" class="carousel slide" data-ride="carousel">
+            <ul class="carousel-indicators">
+              <li data-target="#demo" data-slide-to="0" class="active cursor-pointer"></li>
+              <li data-target="#demo" data-slide-to="1" class="cursor-pointer"></li>
+            </ul>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <div class="text-center">
+                  <img src="../../../assets/images/loginImage1.png" alt="img1">
+                </div>
+                <div class="carousel-text mb-5 ml-5">
+                  <h3>Order Management</h3>
+                  <ul class="carousel-list mb-5">
+                    <li>Search Products and Suppliers</li>
+                    <li>Buy and Sell</li>
+                    <li>Track your Order</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="text-center">
+                  <img src="../../../assets/images/loginImage2.png" alt="img2">
+                </div>
+                <div class="carousel-text mb-5 ml-5">
+                  <h3>Promotions</h3>
+                  <ul class="carousel-list mb-5">
+                    <li>Deals</li>
+                    <li>CashBack</li>
+                    <li>Promo Code</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-sm-12 login-form pt-3">
+          <div class="col-md-11 col-sm-12 mx-auto p-0 text-center">
+            <label class="login-text">{{loginPage.title}}</label>
+            <div class="col-12 p-0 m-0">
+              <div class="d-flex" style="justify-content: center;">
+                <div class="a m-1"></div>
+                <div class="b m-1"></div>
+              </div>
+            </div>
+
+            <div class="col-12 p-0 m-0" [hidden]="loginPage.OTPBlock || loginPage.editMobileNumberBlock">
+              <form [formGroup]="loginForm" (ngSubmit)="login()">
+                <div class="form-group text-left">
+                  <label for="email" class="login-label">Email or Mobile Number</label>
+                  <input type="email" class="form-control" id="username" name="username" formControlName="username"
+                    (keyup)="isNumber($event.target.value)"
+                    [ngClass]="{ 'is-invalid': loginPage.submitted && f.username.errors }" />
+                  <div *ngIf="loginPage.submitted && f.username.errors" class="invalid-feedback">
+                    <div *ngIf="f.username.errors.required">Username is required</div>
+                  </div>
+                </div>
+                <div class="form-group text-left" *ngIf="loginPage.password">
+                  <label for="pwd" class="login-label">Password</label>
+                  <input type="password" class="form-control" id="pwd" name="password" formControlName="password"
+                    [ngClass]="{ 'is-invalid': loginPage.submitted && f.password.errors }" />
+                  <div *ngIf="loginPage.submitted && f.password.errors" class="invalid-feedback">
+                    <div *ngIf="f.password.errors.required">Password is required</div>
+                  </div>
+                </div>
+                <button type="submit" class="form-group btn btn-block login-submit" *ngIf="loginPage.verify"
+                  [disabled]="loginPage.loading">Verify</button>
+                <button type="submit" class="form-group btn btn-block login-submit" [hidden]="loginPage.verify"
+                  [disabled]="loginPage.loading">Login</button>
+                <p class="text-center p-1 m-0 cursor-pointer otp-text" *ngIf="loginPage.OTPLink"
+                  (click)="navigateOTPPage()">
+                  Login with OTP</p>
+                <p class="text-center p-1 m-0 cursor-pointer otp-text" [routerLink]="['/forgot-password']">Reset your
+                  password
+                </p>
+                <div class="d-flex mb-2" style="justify-content: center;">
+                  <div class="or-slide m-2"></div>
+                  <div class="or">OR</div>
+                  <div class="or-slide m-2"></div>
+                </div>
+              </form>
+              <button class="form-group btn btn-block login-submit" [routerLink]="['/register']">Register</button>
+            </div>
+
+            <div class="col-12 text-center p-0 m-0" *ngIf="loginPage.OTPBlock">
+              <div class="col-12 edit-mobilenumber p-2">
+                <i class="fa fa-edit cursor-pointer edit-icon" title="Edit mobileNumber"
+                  (click)="editMobilenumber()"></i>+91 - <span>{{loginPage.mobileNumber}}</span>
+              </div>
+              <div class="col-12 otp-digit p-2">Please enter the 4 digit OTP sent to you</div>
+              <div class="col-12 otp-digit p-2">Valid only for 30 minutes</div>
+              <div class="col-5 mx-auto otp-digit p-0 m-0">
+                <input appInputRestriction='integersOnly' placeholder="Enter OTP" pattern="\d*" maxlength="4"
+                  type="text" class="form-control text-center otp" name="OTP" [(ngModel)]="loginPage.otp" />
+              </div>
+              <div class="col-12 p-0 m-0 text-center">
+                <label *ngIf="loginPage.isCalledOTP" class="resendOTP-timer">Resend OTP in
+                  <strong>{{loginPage.seconds}}</strong> seconds</label>
+                <label [hidden]="loginPage.isCalledOTP" class="resend-otp cursor-pointer" (click)="getOTP()">Resend
+                  OTP</label>
+              </div>
+              <button type="submit" class="form-group btn btn-block login-submit" [hidden]="loginPage.verify"
+                [disabled]="loginPage.loading || loginPage.otp.length < 4" (click)="validateUserOTP()">Submit</button>
+            </div>
+
+            <div class="col-12 p-0 m-0" *ngIf="loginPage.editMobileNumberBlock">
+              <form [formGroup]="editMobileForm" (ngSubmit)="editPhoneNumber()">
+                <div class="form-group text-left">
+                  <label for="email" class="login-label">Mobile Number{{loginPage.mobileNumber}}</label>
+                  <input type="text" class="form-control" id="mobileNumber" name="mobileNumber"
+                    formControlName="mobileNumber" appInputRestriction="integersAndRestrictLength"
+                    [ngClass]="{ 'is-invalid': loginPage.submitted && f1.mobileNumber.errors }" />
+                  <div *ngIf="loginPage.submitted && f1.mobileNumber.errors" class="invalid-feedback">
+                    <div *ngIf="f1.mobileNumber.errors.required">Mobile Number is required</div>
+                    <div *ngIf="f1.mobileNumber.errors.pattern">
+                      Mobile Number is Invalid.
+                    </div>
+                  </div>
+                </div>
+                <button type="submit" class="form-group btn btn-block login-submit"
+                  [disabled]="loginPage.loading">Submit</button>
+              </form>
+            </div>
+            <div class="col-12 text-center support-contact pb-2">For any assistance please contact support 7337898880
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

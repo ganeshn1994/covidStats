@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1, 
+  "version": 1,
   "newProjectRoot": "projects",
   "projects": {
     "MDX-B2B": {
@@ -119,6 +119,127 @@
           }
         }
       }
-    }},
-  "defaultProject": "MDX-B2B"
+    },
+    "retailer": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "projects/retailer",
+      "sourceRoot": "projects/retailer/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/retailer",
+            "index": "projects/retailer/src/index.html",
+            "main": "projects/retailer/src/main.ts",
+            "polyfills": "projects/retailer/src/polyfills.ts",
+            "tsConfig": "projects/retailer/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/retailer/src/favicon.ico",
+              "projects/retailer/src/assets"
+            ],
+            "styles": [
+              "projects/retailer/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/retailer/src/environments/environment.ts",
+                  "with": "projects/retailer/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "retailer:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "retailer:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "retailer:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/retailer/src/test.ts",
+            "polyfills": "projects/retailer/src/polyfills.ts",
+            "tsConfig": "projects/retailer/tsconfig.spec.json",
+            "karmaConfig": "projects/retailer/karma.conf.js",
+            "assets": [
+              "projects/retailer/src/favicon.ico",
+              "projects/retailer/src/assets"
+            ],
+            "styles": [
+              "projects/retailer/src/styles.css"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/retailer/tsconfig.app.json",
+              "projects/retailer/tsconfig.spec.json",
+              "projects/retailer/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/retailer/e2e/protractor.conf.js",
+            "devServerTarget": "retailer:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "retailer:serve:production"
+            }
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "MDX-B2B",
+  "cli": {
+    "analytics": "2c4257d8-3cf3-4f9c-bbdc-5dfc96399c4e"
+  }
 }

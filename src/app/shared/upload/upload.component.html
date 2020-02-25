@@ -1,0 +1,8 @@
+<div class="form-group p-2 m-0">
+  <label class="p-0 m-0 w-5">{{title}}<label class="p-0 m-0" appRequired={{required}}></label></label>
+  <div class="form-group" appDragDrop (onFileDropped)="upload($event)">
+    <label class="drop-box" for="upload-photo">Drag & Drop/Upload Image{{imageHeight}}X{{imageWeight}}</label>
+    <input type='file' (change)="onSelectFile($event)" id="upload-photo">
+  </div>
+  <app-control-message [title]="title" [control]="control" [isFormSubmit]="isFormSubmit"></app-control-message>
+</div>

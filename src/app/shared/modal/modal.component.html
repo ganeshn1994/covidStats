@@ -1,0 +1,26 @@
+<button [attr.id]="modalId + 'Btn'" type="button" class="btn btn-info unset-radius" data-toggle="modal"
+  [attr.data-target]="'#' + modalId" style="display: none;">Open modal</button>
+
+<div class="modal" [attr.id]="modalId" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog" [ngClass]="size ? size : 'modal-lg'">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title modal-header-name">{{modalTitle}}</h4>
+        <button type="button" [attr.id]="modalId + 'closeModal'" class="close" data-dismiss="modal"
+          (click)="cancel(modalId)">&times;</button>
+      </div>
+      <div class="modal-body p-2">
+        <ng-content></ng-content>
+        <div class="col-12 p-2 m-0 text-right">
+          <button class="btn btn-secondary" [ngClass]="formType ? 'mr-1' : ''"
+            (click)="formType === 'search' ? clear() : cancel(modalId)">
+            {{ formType === 'search' ? 'Clear' : 'Cancel' }}
+          </button>
+          <button type="submit" *ngIf="formType" (click)="submit()"
+            class="btn
+            btn-primary">{{ formType === 'edit' ? 'Update' : formType === 'search' ? 'Search' : formType === 'download' ? 'Download' : 'Create'}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
