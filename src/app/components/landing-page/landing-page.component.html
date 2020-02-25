@@ -1,3 +1,7 @@
+  <ng-container *ngIf="isLoggedIn()">
+    <app-business-header>
+    </app-business-header>
+  </ng-container>
   <div class="col-12 p-0">
     <ngb-carousel *ngIf="bannerSlides">
       <ng-template ngbSlide *ngFor="let item of bannerSlides">

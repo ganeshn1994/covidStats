@@ -1,1 +1,23 @@
-<p>business-header works!</p>
+<div class="col-12 p-0 m-0">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light primary-navbar medibox-navbar">
+    <button class="navbar-toggler primary-navbar-toggler hidden-lg-up float-xs-right ml-2" type="button"
+      data-toggle="collapse" data-target="#navbarProductTypes" aria-controls="navbarProductTypes" aria-expanded="false"
+      id="headerNavigation" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse primary-navbar-content" id="navbarProductTypes">
+      <ul class="navbar-nav secondary-navbar-content">
+        <li class="nav-item text-center" *ngFor="let item of productTypes">
+          <a class="nav-link list-menu" (click)="selectProductType(item)">
+            <a class="m-0 p-0 nav-link-text">
+              <img class="d-sm-none d-md-block d-lg-block d-xl-block" src="{{item.img}}" alt="no-img"
+                style="height: 16px;">
+              <span class="ml-1" [ngClass]="selectedProductType === item.name? 'active':''">{{item.name}}</span>
+            </a>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>

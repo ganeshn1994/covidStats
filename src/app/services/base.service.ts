@@ -138,7 +138,23 @@ export class BaseService {
   }
 
   capitalizeFirstLetter(value: any) {
-    return value.charAt(0).toUpperCase() + value.slice(1);
+    if (value) {
+      let result = '';
+      value = value.toLowerCase();
+      const arr = value.split(' ');
+
+      arr.forEach(element => {
+        if (element) {
+          result = result
+            ? result + ' ' + element.charAt(0).toUpperCase() + element.slice(1)
+            : element.charAt(0).toUpperCase() + element.slice(1);
+        }
+      });
+
+      return result;
+    } else {
+      return '';
+    }
   }
 
   createEndDate(date: any) {
