@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ColumnSetting } from 'src/app/models/column-setting';
 import { MyBusinessService } from 'src/app/services/my-business.service';
-import { BaseService } from 'src/app/services';
+import { BaseService, AuthenticationService } from 'src/app/services';
 import {
   Router,
   NavigationEnd,
@@ -46,6 +46,7 @@ export class MyBusinessComponent implements OnInit {
   constructor(
     private myBusinessService: MyBusinessService,
     private baseService: BaseService,
+    private authenticationService: AuthenticationService,
     private route: Router
   ) {}
 
@@ -70,6 +71,7 @@ export class MyBusinessComponent implements OnInit {
 
   redirectToBusiness(event: any) {
     localStorage.setItem('selectedBusiness', event.id);
+    this.authenticationService.setBusinessId(JSON.stringify(event.id));
     localStorage.setItem('placeType', event.placeType);
     let entity = '';
     if (event.placeType === 'Pharmacy') {

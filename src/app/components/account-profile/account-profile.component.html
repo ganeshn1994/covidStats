@@ -1,1 +1,58 @@
-<p>account-profile works!</p>
+<div class="col-12 p-2 mt-5">
+  <div class="col-sm-12 col-md-10 col-lg-6 col-xl-6 user-profile mx-auto">
+    <div class="col-12 profile-header">
+      <div class="col-12 p-0 m-0 profile-label">
+        <label>User Profile</label>
+        <div class="float-right notification-btn-block" title="Notification">
+          <label class="notification-toggle">
+            <input class="switch" type="checkbox" [(ngModel)]="userData.enableNotification"
+              (ngModelChange)="enableNotification()">
+            <span class="slider round"></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="row user-profile-img p-0 m-0 pt-2 pb-2">
+        <i *ngIf="userData.profileImage"><img src="{{userData.profileImage}}" alt="profile" class="profile-img" /></i>
+        <i style="font-size: 90px;" *ngIf="!userData.profileImage" class="fa fa-user"></i>
+        <div class="profile-content">
+          <p class="p-0 m-0">{{userData.name.first}}{{userData.name.last}}</p>
+          <p class="p-0 m-0 user-data">
+            <i class="pr-2 fa fa-envelope" aria-hidden="true"></i> {{userData.email}}
+            <span *ngIf="userData.verifiedDetails.email">
+              <img src="../../../assets/images/verified.png" alt="" class="verified-btn" />
+            </span>
+            <span *ngIf="!userData.verifiedDetails.email" class="badge badge-secondary cursor-pointer"
+              title="verify here" (click)="openEmailVerifyModal()">Verify here</span>
+          </p>
+          <p class="p-0 m-0 user-data">
+            <i class="pr-2 fa fa-phone" style="font-size: 20px;" aria-hidden="true"></i>{{userData.mobileNumber}}
+            <span *ngIf="userData.verifiedDetails.mobile">
+              <img src="../../../assets/images/verified.png" alt="" class="verified-btn" />
+            </span>
+            <!-- <span *ngIf="!userData.verifiedDetails.mobile" class="badge badge-secondary cursor-pointer"
+              title="verify here" (click)="verify('mobile')">Verify here</span> -->
+          </p>
+          <p class="p-0 m-0 user-data" title="Registration Date">
+            <i class="fa fa-calendar" aria-hidden="true"></i>
+            <span class="pl-2">{{userData.createdDate | date : 'mediumDate'}}
+              {{userData.createdDate | date : 'shortTime'}}
+            </span>
+          </p>
+          <p class="p-0 m-0 user-data" title="Last Login"><img src="../../../assets/images/lastlogin.png"
+              class="last-login-img" alt="last login"><span class="pl-2">{{userData.updatedAt | date : 'mediumDate'}}
+              {{userData.updatedAt | date : 'shortTime'}}</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-modal [modalTitle]="'Update Email'" [modalId]="updateEmailsModalId" [formType]="'edit'"
+  (formSubmit)="userVerify($event)">
+  <form [formGroup]="userForm">
+    <app-input [type]="'text'" [inputValue]="userForm.value.email" formControlName="email"
+      [control]="userForm.controls.email" [title]="'Email'" [isFormSubmit]="isSubmitUserForm" [required]="'required'">
+    </app-input>
+  </form>
+</app-modal>

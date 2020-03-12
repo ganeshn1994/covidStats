@@ -9,7 +9,9 @@ import { BaseService, ToasterService, CommonService } from '../index';
 })
 export class AuthenticationService {
   public featureId: any;
-  public businessId = new BehaviorSubject(0);
+  public businessId = new BehaviorSubject(
+    JSON.parse(localStorage.getItem('selectedBusiness'))
+  );
   public activeBusiness = new BehaviorSubject(null);
 
   public userData = new BehaviorSubject(
@@ -105,7 +107,9 @@ export class AuthenticationService {
       localStorage.removeItem('userAccessFeatureData');
       localStorage.removeItem('selectedBusiness');
       localStorage.removeItem('placeType');
+      localStorage.removeItem('placeType');
       this.userData.next(null);
+      this.businessId.next(null);
       this.JWTSubject.next(null);
     }
   }

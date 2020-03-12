@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { MyBusinessService, BaseService } from 'src/app/services';
+import {
+  MyBusinessService,
+  BaseService,
+  AuthenticationService
+} from 'src/app/services';
 import * as _ from 'lodash';
 import { Router, ActivatedRoute } from '@angular/router';
 import { BusinessEntityComponent } from 'src/app/components/business/business-entity/business-entity.component';
@@ -12,6 +16,8 @@ import { BusinessEntityComponent } from 'src/app/components/business/business-en
 export class BusinessHeaderComponent implements OnInit {
   productTypes: any[] = [];
   selectedProductType: any;
+  businessId: any = '';
+
   constructor(
     private myBusinessService: MyBusinessService,
     private baseService: BaseService,
@@ -20,7 +26,6 @@ export class BusinessHeaderComponent implements OnInit {
 
   ngOnInit() {
     this.myBusinessService.selectedProductType.subscribe(data => {
-      console.log(data);
       if (data) {
         this.selectedProductType = data;
       }
