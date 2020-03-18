@@ -40,6 +40,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { TooltipModule } from 'ng2-tooltip-directive';
 import { PopoverModule } from 'ngx-smart-popover';
 import { ClipboardModule } from 'ngx-clipboard';
+import { DealCardComponent } from './deal-card/deal-card.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { ClipboardModule } from 'ngx-clipboard';
     TexteditorComponent,
     UploadComponent,
     MdxImgUploadComponent,
-    BusinessHeaderComponent
+    BusinessHeaderComponent,
+    DealCardComponent
   ],
   imports: [
     FormsModule,
@@ -134,7 +136,8 @@ import { ClipboardModule } from 'ngx-clipboard';
     TexteditorComponent,
     UploadComponent,
     MdxImgUploadComponent,
-    BusinessHeaderComponent
+    BusinessHeaderComponent,
+    DealCardComponent
   ],
   providers: [CurrencyPipe, DatePipe]
 })

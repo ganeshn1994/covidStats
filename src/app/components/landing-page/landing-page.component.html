@@ -37,3 +37,19 @@
       </div>
     </div>
   </div>
+
+  <div class="row trendingHead p-2 m-0">
+    <p class="head-text p-2 m-2">TRENDING DEALS</p>
+  </div>
+  <div class="row p-2 m-0">
+    <ngb-carousel *ngIf="trendingRecords">
+      <ng-template ngbSlide *ngFor="let record of trendingRecords">
+        <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 p-2 m-0">
+          <app-deal-card [record]="record"></app-deal-card>
+        </div>
+      </ng-template>
+    </ngb-carousel>
+    <!-- <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 p-2 m-0" *ngFor="let record of trendingRecords">
+      <app-deal-card [record]="record"></app-deal-card>
+    </div> -->
+  </div>

@@ -1,0 +1,138 @@
+.deal-ends {
+  background: #ffffff;
+  width: 100%;
+  color: #000000;
+  font-family: OpenSans-Regular;
+  font-weight: 600;
+  padding: 0 10px;
+  margin: 0px auto;
+  color: #5C5C5C;
+  width: 235px;
+  border-bottom: 1px solid #97979740;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.deal-ends-label>span {
+  font-size: 10px;
+  font-weight: 900;
+  color: #716969;
+}
+
+.deal-closed {
+  color: #fa4c49 !important;
+}
+
+.slider_new {
+  background-color: #FFFFFF;
+  box-shadow: 0 2px 7px 0 rgba(216, 216, 216, 0.7);
+  padding: 10px;
+  /* // border-top-left-radius: 5px; */
+  /* // border-top-right-radius: 5px; */
+  width: 235px;
+  margin: 0 auto;
+}
+
+.deal-img-block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+  position: relative;
+}
+
+.deal-img-block>img {
+  width: auto;
+  height: 100% !important;
+  cursor: pointer;
+}
+
+.short-expiry {
+  width: 50px;
+  padding: 10px;
+  height: 50px;
+  position: absolute;
+  right: 25px;
+  top: 0px;
+  border-radius: 50%;
+  border: 1px solid #fa4c49;
+  color: #ffffff;
+  background: #fa4c49;
+  text-align: center;
+  font-size: 10px;
+  font-weight: 900;
+  z-index: 1;
+}
+
+.deal-title-block {
+  padding: 10px 0;
+}
+
+.deal-scheme-block {
+  min-height: 99px;
+}
+
+.deal-property {
+  color: #6A6A6A;
+  font-family: OpenSans-Regular;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 12px;
+  text-align: left;
+  margin-bottom: 5px !important;
+}
+
+.deal-property-value {
+  font-size: 12px;
+  color: #4A4A4A;
+  font-family: Montserrat-bold;
+  font-weight: 400;
+  line-height: 16px;
+}
+
+.scheme-type-block {
+  padding: 0 0 10px 0;
+}
+
+.scheme-type {
+  color: #6A6A6A;
+  font-family: Dosis;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 20px;
+  height: 25px;
+  border: none;
+  width: 100%;
+  text-align: left;
+  background: #ececec;
+  padding: 2px 5px;
+}
+
+.scheme-type:focus {
+  outline: none;
+}
+
+.buy-btn-block {
+  text-align: center;
+}
+
+.buy-btn {
+  background: #fa4c49;
+  cursor: pointer;
+  padding: 6px 12px;
+  width: 92%;
+  border: 1px solid #fa4c49;
+  color: #FFFFFF;
+  font-family: OpenSans-Regular;
+  font-size: 12px;
+  font-weight: 900;
+  text-align: center;
+  text-transform: uppercase;
+  transition: all 0.2s ease-in-out;
+}
+
+.buy-btn:hover {
+  font-size: 12px;
+  transform: scale(1.1);
+  transition: all 0.2s ease-in-out;
+}

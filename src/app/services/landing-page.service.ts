@@ -15,4 +15,12 @@ export class LandingPageService {
       })
     );
   }
+
+  getTopTrending() {
+    return this.http.get('deal/topTrendingDeals', {}).pipe(
+      map((response: any) => {
+        return response;
+      })
+    );
+  }
 }
