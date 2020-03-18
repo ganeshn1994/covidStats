@@ -14,6 +14,7 @@ export class LandingPageComponent implements OnInit {
   bannerCount: any;
   userData: any;
   trendingCount: any;
+  businessId: any;
 
   constructor(
     private landingService: LandingPageService,
@@ -34,18 +35,27 @@ export class LandingPageComponent implements OnInit {
     this.getBannerDeals();
     this.getTopTrendingDeals();
     if (this.isLoggedIn()) {
-      const businessId = localStorage.getItem('selectedBusiness');
-      const placeType = localStorage.getItem('placeType');
+      // const businessId = localStorage.getItem('selectedBusiness');
+      this.authenticationService.businessId.subscribe(id => {
+        if (id) {
+          this.businessId = JSON.parse(id);
+          const placeType = localStorage.getItem('placeType');
 
-      if (placeType === 'Pharmacy') {
-        this.router.navigateByUrl('/retailer/home/' + businessId);
-      } else if (placeType === 'Distributor') {
-        this.router.navigateByUrl('/stockist/home/' + businessId);
-      } else if (placeType === 'Stockist') {
-        this.router.navigateByUrl('/super-stockist/home/' + businessId);
-      } else if (placeType === 'MarketingCompany') {
-        this.router.navigateByUrl('/marketing-company/home/' + businessId);
-      }
+          if (placeType === 'Pharmacy') {
+            this.router.navigateByUrl('/retailer/home/' + this.businessId);
+          } else if (placeType === 'Distributor') {
+            this.router.navigateByUrl('/stockist/home/' + this.businessId);
+          } else if (placeType === 'Stockist') {
+            this.router.navigateByUrl(
+              '/super-stockist/home/' + this.businessId
+            );
+          } else if (placeType === 'MarketingCompany') {
+            this.router.navigateByUrl(
+              '/marketing-company/home/' + this.businessId
+            );
+          }
+        }
+      });
     }
   }
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MyBusinessService } from 'src/app/services';
 
 @Component({
@@ -11,13 +11,13 @@ export class BusinessEntityComponent implements OnInit {
   selectedProductType: any;
   constructor(
     private activatedRoute: ActivatedRoute,
+    private router: Router,
     private myBusinessService: MyBusinessService
   ) {
-    this.selectedProductType = this.activatedRoute.snapshot.paramMap.get(
-      'category'
-    );
-
-    this.myBusinessService.selectedProductType.next(this.selectedProductType);
+    this.activatedRoute.params.subscribe(data => {
+      this.selectedProductType = data.category;
+      this.myBusinessService.selectedProductType.next(data.category);
+    });
   }
 
   ngOnInit() {
