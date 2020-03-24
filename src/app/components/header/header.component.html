@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light primary-navbar fixed-top medibox-navbar">
   <a class="navbar-brand" [routerLink]="['/']">
-    <img class="logo" src="../../../assets/images/logo.png" />
+    <img class="logo" src="../../../assets/images/case-stats.jpg" />
   </a>
 
   <button class="navbar-toggler primary-navbar-toggler" type="button" data-toggle="collapse"
@@ -10,61 +10,6 @@
   </button>
 
   <div class="collapse navbar-collapse primary-navbar-content" id="navbarSupportedContent">
-    <!-- <div class="col-12 text-center admin"><label>ADMINISTRATION PORTAL</label></div> -->
-    <ul class="navbar-nav">
-      <!-- <li class="nav-item text-center">
-        <a class="nav-link nav-link-text customers-text" [routerLinkActive]="['active']"
-          [routerLink]="['/customerConfig']">Customers</a>
-      </li>
-
-      <li class="nav-item text-center">
-        <a class="nav-link nav-link-text" [routerLinkActive]="['active']" [routerLink]="['/appdownload']">
-          <span class="fa fa-mobile mobile-icon" aria-hidden="true"></span></a>
-      </li> -->
-
-      <li class="nav-item text-center" [hidden]="isLoggedIn()">
-        <a class="nav-link nav-link-text" [routerLinkActive]="['active']" [routerLink]="['/login']">
-          <span class="fa fa-lock login-icon"></span>
-        </a>
-      </li>
-
-      <div class="nav-item text-center" *ngIf="isLoggedIn()">
-        <a class="nav-link nav-link-text link login-user cursor-pointer" data-toggle="dropdown"
-          title="{{userData.name.first}}">
-          <div class="row p-0 m-0">
-            <div class="user-profile-no-image" *ngIf="!userData.profileImage">
-              <i *ngIf="!userData.profileImage" class="fa fa-user" aria-hidden="true"
-                style="margin-top: 30% !important;"></i>
-            </div>
-            <div class="user-profile-image" *ngIf="userData.profileImage">
-              <i *ngIf="userData.profileImage"><img src="{{userData.profileImage}}" alt="profile"
-                  class="profile-img" /></i>
-            </div>
-            <div>
-              <p class="p-0 m-0">Welcome!</p>
-              <p class="p-0 m-0 text-left">{{userData.name.first | ellipsisPipe: 10}}</p>
-            </div>
-          </div>
-        </a>
-        <div class="dropdown dropleft">
-          <div class="dropdown-menu p-0 profile-details">
-            <li class="cursor-pointer col-12 drop-down my-profile-dropdown" [routerLink]="['/profile']"
-              routerLinkActive="active" title="My Profile">
-              <i class="fa fa-user p-1 mt-1 mr-2" aria-hidden="true"></i>My Profile
-            </li>
-
-            <li class="cursor-pointer col-12 drop-down my-profile-dropdown" [routerLink]="['/mybusiness']"
-              routerLinkActive="active" title="myBusiness">
-              <i class="fa fa-th-large p-1 mt-1 mr-2" aria-hidden="true"></i>My Business
-            </li>
-
-            <li class="cursor-pointer col-12 drop-down my-profile-dropdown" (click)="logout()" title="logout">
-              <i class="fa fa-sign-out text-danger pl-1 mr-1" aria-hidden="true"></i>
-              <span class="pl-2 logout">Logout</span>
-            </li>
-          </div>
-        </div>
-      </div>
-    </ul>
+    <div class="col-12 text-left admin"><label>COVID-19 Stats</label></div>
   </div>
 </nav>

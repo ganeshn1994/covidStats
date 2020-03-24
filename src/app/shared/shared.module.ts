@@ -13,22 +13,13 @@ import { StyleCellDirective } from '../directives/style-cell.directive';
 import { CurrencyPipe } from '@angular/common';
 import { HeadingDirective } from '../directives/heading.directive';
 import { RequiredDirective } from '../directives/required.directive';
-import { ControlMessageComponent } from './control-message/control-message.component';
-import { InputComponent } from './input/input.component';
 import { NgbModule, NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
-import { DateComponent } from './date/date.component';
-import { SelectComponent } from './select/select.component';
 import { ModalComponent } from './modal/modal.component';
-import { FilterComponent } from './filter/filter.component';
-import { TexteditorComponent } from './texteditor/texteditor.component';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import { DragDropDirective } from '../directives/drag-drop-directive.directive';
-import { UploadComponent } from './upload/upload.component';
 import { MatchHeightDirective } from '../directives/match-height.directive';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
-import { MdxImgUploadComponent } from './mdx-img-upload/mdx-img-upload.component';
-import { BusinessHeaderComponent } from './business-header/business-header.component';
 import { FileUploadModule } from '@iplab/ngx-file-upload';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import {
@@ -40,7 +31,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { TooltipModule } from 'ng2-tooltip-directive';
 import { PopoverModule } from 'ngx-smart-popover';
 import { ClipboardModule } from 'ngx-clipboard';
-import { DealCardComponent } from './deal-card/deal-card.component';
 
 @NgModule({
   declarations: [
@@ -53,17 +43,7 @@ import { DealCardComponent } from './deal-card/deal-card.component';
     TabsComponent,
     MdxTableComponent,
     MdxPaginationComponent,
-    ControlMessageComponent,
-    InputComponent,
-    DateComponent,
-    SelectComponent,
     ModalComponent,
-    FilterComponent,
-    TexteditorComponent,
-    UploadComponent,
-    MdxImgUploadComponent,
-    BusinessHeaderComponent,
-    DealCardComponent
   ],
   imports: [
     FormsModule,
@@ -126,18 +106,7 @@ import { DealCardComponent } from './deal-card/deal-card.component';
     TabsComponent,
     MdxTableComponent,
     MdxPaginationComponent,
-    InputComponent,
-    DateComponent,
-    SelectComponent,
-    ControlMessageComponent,
     ModalComponent,
-    ControlMessageComponent,
-    FilterComponent,
-    TexteditorComponent,
-    UploadComponent,
-    MdxImgUploadComponent,
-    BusinessHeaderComponent,
-    DealCardComponent
   ],
   providers: [CurrencyPipe, DatePipe]
 })
