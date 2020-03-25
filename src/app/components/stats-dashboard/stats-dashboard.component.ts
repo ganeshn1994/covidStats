@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ColumnSetting } from 'src/app/models/column-setting';
 import { StatCountryService } from 'src/app/services/stat-country.service';
 import { ModalService } from 'src/app/services';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-stats-dashboard',
@@ -16,6 +17,7 @@ export class StatsDashboardComponent implements OnInit {
   latitude = 20;
   longitude = 77;
   data: any;
+  updatedate: Date;
   allStatsData: any[] = [];
   coutryDisplay = 'coutryDisplayModalId';
 
@@ -71,6 +73,9 @@ export class StatsDashboardComponent implements OnInit {
   };
   label: string[];
   StatValue: unknown[];
+  callFunction = {
+    seconds: 1000
+  };
 
   constructor(
     private statsService: StatCountryService,
@@ -80,6 +85,15 @@ export class StatsDashboardComponent implements OnInit {
   ngOnInit() {
     this.getAllData();
     this.getCountryData();
+
+    const progressInterval = setInterval(() => {
+      this.callFunction.seconds = this.callFunction.seconds - 1;
+      if (this.callFunction.seconds === 1) {
+        this.getAllData();
+        this.getCountryData();
+        this.callFunction.seconds = 1000;
+      }
+    }, 1000);
   }
 
   showCountryDialog() {
@@ -93,7 +107,8 @@ export class StatsDashboardComponent implements OnInit {
 
   getAllData() {
     this.statsService.getAllData().subscribe(data => {
-      this.allStatsData.push(data);
+      this.updatedate = data.updated;
+      console.log(this.updatedate);
       this.allStatsData.splice(-1, 1);
       this.label = Object.keys(data);
       this.label.splice(-1, 1);
@@ -117,7 +132,7 @@ export class StatsDashboardComponent implements OnInit {
   getCountryData() {
     this.statsService.getAllCountryData().subscribe(data => {
       data.forEach(element => {
-        this.markers.push(element.countryInfo);
+        this.markers.push(element);
         element.flag = element.countryInfo.flag;
       });
       this.allCountryDataArray = data;
@@ -125,10 +140,13 @@ export class StatsDashboardComponent implements OnInit {
   }
   keyUpdateValue(event: any) {}
   selectedData(event: any) {
+    console.log(event);
+    this.latitude = event.countryInfo.lat;
+    this.longitude = event.countryInfo.long;
     this.allCountryDataArray = [];
     this.allCountryDataArray.push(event);
   }
-  clearSearch(event: any) {
+  clearSearch() {
     this.getCountryData();
   }
   editModule(event: any) {}

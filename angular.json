@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "MDX-B2B": {
+    "Covid19-stat": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/MDX-B2B",
+            "outputPath": "dist/Covid19-stat",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -62,18 +62,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "MDX-B2B:build"
+            "browserTarget": "Covid19-stat:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "MDX-B2B:build:production"
+              "browserTarget": "Covid19-stat:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "MDX-B2B:build"
+            "browserTarget": "Covid19-stat:build"
           }
         },
         "test": {
@@ -103,11 +103,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "MDX-B2B:serve"
+            "devServerTarget": "Covid19-stat:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "MDX-B2B:serve:production"
+              "devServerTarget": "Covid19-stat:serve:production"
             }
           }
         }
@@ -225,7 +225,7 @@
       }
     }
   },
-  "defaultProject": "MDX-B2B",
+  "defaultProject": "Covid19-stat",
   "cli": {
     "analytics": "2c4257d8-3cf3-4f9c-bbdc-5dfc96399c4e"
   }

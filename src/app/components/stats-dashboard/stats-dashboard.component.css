@@ -20,9 +20,9 @@ agm-map {
 
 .updateData {
   position: absolute;
-  right: 0;
-  opacity: 0.8;
-  /* bottom: 40%; */
+  left: 0;
+  bottom: 0;
+  opacity: 0.9;
 }
 
 .mydialog {
@@ -38,4 +38,12 @@ agm-map {
   :host ::ng-deep .ui-dialog {
     width: 75vw !important;
   }
+
+  .mainSearch {
+    position: absolute;
+  }
+}
+
+.agm-map-container {
+  height: 300px;
 }
