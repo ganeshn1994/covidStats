@@ -38,10 +38,6 @@ agm-map {
   :host ::ng-deep .ui-dialog {
     width: 75vw !important;
   }
-
-  .mainSearch {
-    position: absolute;
-  }
 }
 
 .agm-map-container {
