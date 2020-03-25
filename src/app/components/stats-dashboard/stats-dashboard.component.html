@@ -1,21 +1,19 @@
       <div class="row">
 
-        <agm-map [latitude]='latitude' [longitude]='longitude' [zoom]="5" style="height: 100%; width: 100%; position: absolute; top: 0px; left: 0px; background-color: rgb(229, 227,
-        223);" [mapTypeId]="'hybrid'">
-          <agm-marker *ngFor='let marker of markers' [latitude]='marker.countryInfo.lat'
-            [longitude]='marker.countryInfo.long' [opacity]='marker.countryInfo.alpha'
+        <agm-map [latitude]='latitude' [longitude]='longitude' [zoom]="5" [minZoom]="2" style="height: 100%; width: 100%; position: absolute; top: 0px; left: 0px; background-color: rgb(229, 227,
+        223);" [mapTypeId]="'hybrid'" (zoomChange)='zoomChange($event)'>
+          <agm-marker *ngFor=' let marker of markers' [latitude]='marker.countryInfo.lat'
+            [longitude]='marker.countryInfo.long' [visible]='setVisible' [opacity]='marker.countryInfo.alpha'
             (markerClick)='selectMarker(marker)'>
 
-            <agm-info-window [disableAutoPan]="true" [isOpen]="true">
-              <p><strong>{{marker.country}}</strong></p>
-              <p><strong>{{marker.cases}}</strong> confirmed cases</p>
-              <p><strong>{{marker.deaths}}</strong> reported deaths</p>
-              <p><strong>{{marker.recovered}}</strong> recovered</p>
+            <agm-info-window [disableAutoPan]="disableAutoPan" [isOpen]="isOpen">
+              <p class="p-0 m-0"><strong>{{marker.country}}</strong></p>
+              <p class="p-0 m-0"><strong>{{marker.cases}}</strong> confirmed cases</p>
+              <p class="p-0 m-0"><strong>{{marker.deaths}}</strong> reported deaths</p>
+              <p class="p-0 m-0"><strong>{{marker.recovered}}</strong> recovered</p>
 
             </agm-info-window>
           </agm-marker>
-
-
 
           <agm-circle *ngFor='let marker of markers' [latitude]=" marker.countryInfo.lat"
             [longitude]="marker.countryInfo.long" [radius]="100000" [fillColor]="'red'">

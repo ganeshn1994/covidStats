@@ -3,6 +3,7 @@ import { ColumnSetting } from 'src/app/models/column-setting';
 import { StatCountryService } from 'src/app/services/stat-country.service';
 import { ModalService } from 'src/app/services';
 import { Observable } from 'rxjs';
+import { ZoomControlStyle } from '@agm/core';
 
 @Component({
   selector: 'app-stats-dashboard',
@@ -20,7 +21,14 @@ export class StatsDashboardComponent implements OnInit {
   updatedate: Date;
   allStatsData: any[] = [];
   coutryDisplay = 'coutryDisplayModalId';
-
+  label: string[];
+  StatValue: unknown[];
+  callFunction = {
+    seconds: 1000
+  };
+  isOpen: boolean = true;
+  disableAutoPan: boolean = true;
+  setVisible: boolean = true;
   selectedMarker;
   markers = [
     // These are all just random coordinates from https://www.random.org/geographic-coordinates/
@@ -71,11 +79,6 @@ export class StatsDashboardComponent implements OnInit {
     class: 'table-bordered',
     align: 'text-center'
   };
-  label: string[];
-  StatValue: unknown[];
-  callFunction = {
-    seconds: 1000
-  };
 
   constructor(
     private statsService: StatCountryService,
@@ -94,6 +97,20 @@ export class StatsDashboardComponent implements OnInit {
         this.callFunction.seconds = 1000;
       }
     }, 1000);
+    console.log(ZoomControlStyle);
+  }
+
+  zoomChange(event: any) {
+    console.log(event);
+    if (event < 5) {
+      this.isOpen = false;
+      this.disableAutoPan = false;
+      this.setVisible = false;
+    } else {
+      this.isOpen = true;
+      this.disableAutoPan = true;
+      this.setVisible = true;
+    }
   }
 
   showCountryDialog() {
@@ -132,6 +149,7 @@ export class StatsDashboardComponent implements OnInit {
   getCountryData() {
     this.statsService.getAllCountryData().subscribe(data => {
       data.forEach(element => {
+        element.radius = element.cases * 40;
         this.markers.push(element);
         element.flag = element.countryInfo.flag;
       });
