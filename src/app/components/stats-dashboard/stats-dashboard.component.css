@@ -1,0 +1,40 @@
+.countryTable {
+  height: 500px;
+  overflow-y: scroll;
+}
+
+agm-map {
+  height: 300px;
+  /* height is required */
+}
+
+.countryBtn {
+  position: absolute;
+  bottom: 50%;
+}
+
+.statusBtn {
+  position: absolute;
+  bottom: 60%;
+}
+
+.updateData {
+  position: absolute;
+  right: 0;
+  /* bottom: 40%; */
+}
+
+.mydialog {
+  width: '50vw';
+}
+
+:host ::ng-deep .ui-button {
+  margin: 0.5em 0.5em 0.5em 0;
+  width: 140px;
+}
+
+@media screen and (max-width: 40em) {
+  :host ::ng-deep .ui-dialog {
+    width: 75vw !important;
+  }
+}

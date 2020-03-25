@@ -7,7 +7,7 @@
   <div class="table-responsive">
     <table class="table p-0 m-0" [ngClass]="tableSettings.class"
       [ngStyle]="{'font-size': tableSettings.fontSize + 'px'}">
-      <thead style="background: #2d85c9;color: #fff;">
+      <thead style="background: #343a3e;color: #fff;">
         <tr [ngClass]="tableSettings.align">
           <th class="v-middle" *ngIf="checkboxEnable"><input type="checkbox" [(ngModel)]="checkAll"
               (change)="selectAll(records, checkAll)" [disabled]="isDisableCheckAll">
@@ -31,7 +31,8 @@
                   <div style="display: inherit;font-size: 0.7rem;"
                     *ngIf="record[special.key] && record[special.key] !=  'verify'" class="badge badge-pill mb-2 mr-2"
                     [ngClass]="special.class">
-                    {{record[special.key]}}
+                    <img [src]="record[special.key]" class="verify">
+
                   </div>
                   <div *ngIf="special.key== 'verify'" class="verify-badge">
                     <img src="./assets/images/verified.png" class="verify">

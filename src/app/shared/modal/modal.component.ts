@@ -8,7 +8,6 @@ import {
   OnChanges
 } from '@angular/core';
 import { ModalService } from 'src/app/services';
-import { ModalTypes } from 'src/app/models/incomplete-orders';
 import { FormGroup } from '@angular/forms';
 
 @Component({

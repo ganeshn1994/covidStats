@@ -16,7 +16,7 @@ import { PipesModule } from './pipes';
 import { BnNgIdleService } from 'bn-ng-idle';
 import { StatsDashboardComponent } from './components/stats-dashboard/stats-dashboard.component';
 import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
-
+import { AgmCoreModule } from '@agm/core';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +35,10 @@ import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.co
     PipesModule,
     BrowserAnimationsModule,
     SnotifyModule.forRoot(),
-    FormsModule
+    FormsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBB_lDYJjs5vkL4kaHI-LCGHm_zwa3nkHg'
+    })
   ],
   providers: [
     { provide: 'SnotifyToastConfig', useValue: ToastDefaults },

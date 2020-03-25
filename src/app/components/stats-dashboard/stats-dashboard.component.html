@@ -1,1 +1,77 @@
+      <div class="row">
+        <agm-map [latitude]='latitude' [longitude]='longitude' style="height: 100%; width: 100%; position: absolute; top: 0px; left: 0px; background-color: rgb(229, 227,
+        223);" [mapTypeId]="'hybrid'">
+          <agm-marker *ngFor='let marker of markers' [latitude]='marker.lat' [longitude]='marker.long'
+            [opacity]='marker.alpha' (markerClick)='selectMarker($event)'>
+          </agm-marker>
 
+          <agm-circle *ngFor='let marker of markers' [latitude]=" marker.lat" [longitude]="marker.long"
+            [radius]="100000" [fillColor]="'red'">
+          </agm-circle>
+        </agm-map>
+      </div>
+
+      <p-card header="COVID-19 Details" class="updateData text-center">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">
+
+            <div *ngFor="let item of label" class="text-left" style="text-transform: capitalize;">Total {{item}}</div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+            <div *ngFor="let statItem of StatValue">{{statItem | number}}</div>
+          </div>
+        </div>
+      </p-card>
+
+      <button type="button" (click)="showCountryDialog()" pButton icon="pi pi-arrow-up" label="BottomLeft"
+        class="btn btn-warning countryBtn"><i class="fa fa-list" aria-hidden="true"></i></button>
+
+      <button type="button" (click)="showStatsDialog()" pButton icon="pi pi-arrow-up" label="BottomLeft"
+        class="btn btn-warning statusBtn"><i class="fa fa-bar-chart" aria-hidden="true"></i></button>
+
+
+      <!-- <p-dialog header="Country List" [(visible)]="coutryDisplay" position="position" [modal]="true"
+        [style]="{width: '50vw'}" [maximizable]="true" [baseZIndex]="10000" [draggable]="false" [resizable]="false">
+
+        <p-footer>
+          <button type="button" pButton icon="pi pi-times" (click)="coutryDisplay=false" label="Close"
+            class="btn btn-warning">Close</button>
+        </p-footer>
+      </p-dialog> -->
+
+      <app-modal [modalTitle]="'Country List'" [size]="'modal-xl'" [formType]="''" [modalId]="coutryDisplay"
+        (formSubmit)="closeModal($event)">
+        <div class="col-12 p-2 m-0 countryTable">
+          <div class="row p-0 m-0 justify-content-between">
+            <div class="col-md-4 col-lg-4 col-xl-4 p-2 m-0 order-2">
+              <label class="p-0 m-0">Search Country</label>
+              <ng-autocomplete [data]="allCountryDataArray" [searchKeyword]="keyword" placeHolder="Search Country"
+                historyIdentifier="allCountryDataArray" (selected)='selectedData($event)'
+                (inputChanged)='keyUpdateValue($event)' (inputCleared)="clearSearch($event)"
+                [itemTemplate]="itemTemplate" [notFoundTemplate]="notFoundTemplate">
+              </ng-autocomplete>
+
+              <ng-template #itemTemplate let-item>
+                <a [innerHTML]="item.country"></a>
+              </ng-template>
+
+              <ng-template #notFoundTemplate let-notFound>
+                <div [innerHTML]="notFound"></div>
+              </ng-template>
+            </div>
+          </div>
+          <app-mdx-table [records]="allCountryDataArray" [dataSettings]="dataSettings" [tableSettings]="tableSettings"
+            (editData)="editModule($event)">
+          </app-mdx-table>
+        </div>
+      </app-modal>
+
+
+      <p-dialog header="Stats" [(visible)]="statsDisplay" position="top" [modal]="true" style="position: absolute;"
+        [style]="{width: '50vw'}" [maximizable]=" true" [baseZIndex]="10000" [draggable]="false" [resizable]="false">
+        <p-chart type="doughnut" [data]="data"></p-chart>
+        <p-footer>
+          <button type="button" pButton icon="pi pi-times" (click)="statsDisplay=false" label="Close"
+            class="btn btn-warning">Close</button>
+        </p-footer>
+      </p-dialog>

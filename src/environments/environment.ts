@@ -9,7 +9,7 @@ export const environment = {
   // urlHost: '10.0.1.8:3004'
 
   exportBaseUrl: 'http://52.172.215.49:3002/',
-  baseUrl: 'http://116.203.210.188:3002/api/',
+  baseUrl: 'https://corona.lmao.ninja/',
   urlHost: '116.203.210.188:3004'
 
   // exportBaseUrl: 'http://192.168.0.121:3002/',

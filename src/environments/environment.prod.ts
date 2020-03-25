@@ -3,7 +3,7 @@ export const environment = {
   //  baseUrl: 'https://srvr.medibox.in/api/',
   // exportBaseUrl: 'https://srvr.medibox.in/'
 
-  baseUrl: 'http://116.203.210.188:3002/api/',
+  baseUrl: 'https://corona.lmao.ninja/',
   urlHost: '116.203.210.188:3002',
   exportBaseUrl: 'https://116.203.210.188:3002/'
 

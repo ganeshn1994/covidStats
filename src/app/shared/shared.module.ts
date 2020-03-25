@@ -31,6 +31,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { TooltipModule } from 'ng2-tooltip-directive';
 import { PopoverModule } from 'ngx-smart-popover';
 import { ClipboardModule } from 'ngx-clipboard';
+import { DialogModule } from 'primeng/dialog';
+import { GMapModule } from 'primeng/gmap';
+import { ChartModule } from 'primeng/chart';
+import { CardModule } from 'primeng/card';
 
 @NgModule({
   declarations: [
@@ -43,7 +47,7 @@ import { ClipboardModule } from 'ngx-clipboard';
     TabsComponent,
     MdxTableComponent,
     MdxPaginationComponent,
-    ModalComponent,
+    ModalComponent
   ],
   imports: [
     FormsModule,
@@ -68,7 +72,11 @@ import { ClipboardModule } from 'ngx-clipboard';
     OwlNativeDateTimeModule,
     TooltipModule,
     PopoverModule,
-    ClipboardModule
+    ClipboardModule,
+    DialogModule,
+    GMapModule,
+    ChartModule,
+    CardModule
   ],
   exports: [
     InputRestrictionDirective,
@@ -102,11 +110,15 @@ import { ClipboardModule } from 'ngx-clipboard';
     TooltipModule,
     PopoverModule,
     ClipboardModule,
+    DialogModule,
+    GMapModule,
+    ChartModule,
+    CardModule,
 
     TabsComponent,
     MdxTableComponent,
     MdxPaginationComponent,
-    ModalComponent,
+    ModalComponent
   ],
   providers: [CurrencyPipe, DatePipe]
 })
