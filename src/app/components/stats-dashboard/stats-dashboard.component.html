@@ -10,15 +10,14 @@
           </agm-circle>
         </agm-map>
       </div>
-
-      <p-card header="COVID-19 Details" class="updateData text-center">
+      <p-card header="Total COVID-19 Records" class="updateData text-center">
         <div class="row">
-          <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">
+          <div class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8">
 
-            <div *ngFor="let item of label" class="text-left" style="text-transform: capitalize;">Total {{item}}</div>
+            <div *ngFor="let item of label" class="text-left" style="text-transform: capitalize;">{{item}}</div>
           </div>
-          <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
-            <div *ngFor="let statItem of StatValue">{{statItem | number}}</div>
+          <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+            <div *ngFor="let statItem of StatValue" class="left-right">{{statItem | number}}</div>
           </div>
         </div>
       </p-card>

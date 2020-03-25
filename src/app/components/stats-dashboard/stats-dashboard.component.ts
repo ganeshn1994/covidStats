@@ -94,6 +94,7 @@ export class StatsDashboardComponent implements OnInit {
   getAllData() {
     this.statsService.getAllData().subscribe(data => {
       this.allStatsData.push(data);
+      this.allStatsData.splice(-1, 1);
       this.label = Object.keys(data);
       this.label.splice(-1, 1);
       this.StatValue = Object.values(data);
