@@ -45,7 +45,7 @@
     "ngx-clipboard": "^12.3.0",
     "ngx-smart-popover": "^1.1.0",
     "ngx-take-until-destroy": "^5.4.0",
-    "npm": "^6.13.1",
+    "npm": "^9.6.6",
     "primeicons": "^2.0.0",
     "primeng": "^8.1.4",
     "rxjs": "~6.4.0",
@@ -54,7 +54,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.803.12",
-    "@angular/cli": "~8.3.12",
+    "@angular/cli": "~16.0.0",
     "@angular/compiler-cli": "~8.2.11",
     "@angular/language-service": "~8.2.11",
     "@types/googlemaps": "^3.39.3",
